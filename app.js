@@ -4,16 +4,14 @@ const app = express();
 const PORT =  process.env.PORT || 5000
 const {Telegraf} = require('telegraf');
 const bot = new Telegraf('5505915548:AAFICbQOcgWNTOVkZBJsGW5SJsqdjjdTY4w')
-
+const web_link = 'https://food-king.vercel.app/'
 app.get('/', (req, res)=>{
-    res.send("welcome")
+    res.send("welcome chatbot")
 })
 
-bot.start( ctx => {
-    console.log(ctx.from)
-    
-   ctx.reply("welcome")
-})
+bot.start((ctx) => ctx.reply('Welcome to food king',{reply_markup:{keyboard:[[{text:'web app', web_app:{url: web_link}}]]}}))
+
+bot.launch()
 
 app.listen(PORT, ()=>{
 
